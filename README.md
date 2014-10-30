@@ -32,9 +32,7 @@ librarian-puppet install
 puppet apply /etc/puppet/manifests/site.pp
 ```
 
-* Create OpenVPN client config (replace x.x.x.x with your ip)
-
-** Concatenate the following into a .ovpn file:
+* Concatenate the following into an .ovpn file (replace x.x.x.x with your ip)
 
 ```
 client
