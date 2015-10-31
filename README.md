@@ -1,17 +1,22 @@
 ## My Own VPN
 
+* Update site.pp with your info
+  * Replace `server-name` with your server's name
+  * Duplicate `openvpn::client { ... }` and `openvpn::client_specific_config { ... }` for each of your clients, with unique names
+  * Replace `?.?.?.?` with your masked server ip (x.x.x.0)
+
 * Ensure ruby-dev is installed (required for librarian-puppet, else fails to load mkmf):
 
 ```
+apt-get update
 apt-get install ruby-dev make
 ```
 
 * Install puppet:
 
 ```
-wget https://apt.puppetlabs.com/puppetlabs-release-wheezy.deb
-dpkg -i puppetlabs-release-wheezy.deb
-apt-get update
+wget https://apt.puppetlabs.com/puppetlabs-release-jessie.deb
+dpkg -i puppetlabs-release-jessie.deb
 apt-get install puppet
 ```
 
@@ -55,3 +60,8 @@ Contents of client.crt
 Contents of client.key
 </key>
 ```
+
+* Or copy /etc/openvpn/<server-name>/download-configs/<client-name>.ovpn and change the following
+  * Remove the `ca`, `cert`, and `key` lines
+  * Change `proto` to `tcp-client`
+  * Change `server-name` to your ip
